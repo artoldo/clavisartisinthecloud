@@ -37,20 +37,26 @@
 
       .helmet {
         z-index: 99;
-        position: absolute;
-        top:10%; 
+        width:20%;
+        top:20%;
         left:40%;
-        background: transparent;
-        bottom:0px;
-        height:300px;
+        position: absolute;
+        
       }
    
       .hand {
         z-index: 98;
         position: absolute;
-        background: transparent;
-        height:500px;
       }
+
+       #center {
+	bottom: 0px;
+        position: absolute;
+        width:100%;
+        text-align: center;
+        z-index: 99;
+ 
+        }
 
       .overlay {
         z-index: 100;
@@ -105,15 +111,11 @@
         .logo {
 		height:70px; left:5px; top: 30px;
         }
-   
+        
         .hand {
-		display:none;
+		width:20%;
         }
 
-        .helmet {
-		 display:none;
-        }
-        
       }
 
 
@@ -122,17 +124,25 @@
         .text {
 		font-size:normal;
         }
-   
-        .hand {
-	       display:none;
-        }
 
-        .helmet {
-		 display:none;
+          .hand {
+		width:30%;
         }
-         
+   
       }
 
+
+       @media only screen and (max-width: 4000px) {
+
+        .text {
+		font-size:normal;
+        }
+
+         .hand {
+		width:30%;
+        }
+   
+      }
 
 
   
@@ -142,10 +152,17 @@
 <body bg-color="black">
 
 <image src="images/clavisartis.png" class="logo"/>
-<image src="images/helmet.png" class="helmet"/></div>
-<image src="images/lefthand.png" class="hand" style="bottom:0px; left:0px;" />
-<image src="images/righthand.png" class="hand" style="bottom:0px; right:0px;"/></div>
 
+<image src="images/helmet.png" class="helmet"/>
+
+<div id="center">
+<div style="width:50%">
+<image src="images/lefthand.png" class="hand" style="bottom:0px; left:0px;" />
+</div>
+
+<div style="width:50%">
+<image src="images/righthand.png" class="hand" style="bottom:0px; right:0px;"/></div>
+</div>
 
 <div class="overlay">
 <div class="text"><span style="color: white;">Zoroaster Superstar:</span> <span><a href="../bowie/">David Bowie</a></span> <span style="color: white;">(Ziggy Stardust) </span><span><a href="../mercury/">Freddie Mercury</a></span> <span style="color: white;">(Queen) </span><span><a href="../casanova/">Casanova</a></span> <span style="color: white;">(Fellini)</span></div>
