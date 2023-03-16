@@ -37,13 +37,14 @@
         height:100px;
       }
 
-      .carpet {
+      #center {
+	bottom: 0px;
+        position: absolute;
+        width:100%;
+        text-align: center;
         z-index: 99;
-        background: transparent;
-        position:absolute;
-        bottom:0px;
-        left:40%;
-      }
+ 
+        }
   
       .overlay {
         z-index: 100;
@@ -118,7 +119,10 @@
 <body bg-color="black">
 
 <image src="images/clavisartis.png" class="logo"/>
-<image src="images/carpet.png" class="carpet"/>
+
+<div id="center">
+<image src="images/carpet.png"/>
+</div>
 
 <div class="overlay">
 <div class="text"><span style="color: white;">Zoroaster Superstar:</span> <span><a href="../bowie/gamepad.html">David Bowie</a></span> <span style="color: white;">(Ziggy Stardust) </span><span><a href="../mercury/gamepad.html">Freddie Mercury</a></span> <span style="color: white;">(Queen) </span><span><a href="../casanova/gamepad.html">Casanova</a></span> <span style="color: white;">(Fellini)</span></div>
@@ -131,7 +135,7 @@
 
 <a-sky src="images/sky.jpg" ></a-sky>
 
-<a-cylinder src="/images/queen360.jpg" material="side: double" open-ended="true" scale="10 1 1" opacity="0.7;" position="0 0 0" rotation="0 0 0"></a-cylinder>
+<a-cylinder color="blue" src="/images/queen360.jpg" material="side: double" open-ended="true" scale="100 100 100" opacity="0.7;" position="0 2 0" rotation="0 0 0"></a-cylinder>
 
 
 <!-- Sound -->
@@ -141,7 +145,7 @@
 	
 <!-- Camera -->
 
-<a-entity id="rig" position="0 10 500" animation="property: position; to: 0 10 10; easing: linear; dur: 10000" look-controls>
+<a-entity id="rig" position="0 20 10" animation="property: position; to: 0 10 10; easing: linear; dur: 10000" look-controls>
 	<a-entity id="camera" camera position="0 1.6 0" cursor-visible="true">
 
 	</a-entity>
@@ -559,9 +563,9 @@
 
 <!-- Object -->
 
-<a-box static-body position="-6 3 0" src="images/m (135).jpg" material="transparent: true; opacity: 0.7;" scale="3 3 3"  rotation="0 0 0" animation="property: rotation; to: -360 -360 -360; loop: true; easing: linear; dur: 10000"></a-box>
+<a-box static-body position="-8 3 -15" src="images/m (135).jpg" material="transparent: true; opacity: 0.7;" scale="3 3 3"  rotation="0 0 0" animation="property: rotation; to: -360 -360 -360; loop: true; easing: linear; dur: 10000"></a-box>
 
-<a-box static-body position="6 3 0" src="images/m (136).jpg" material="transparent: true; opacity: 0.7;" scale="3 3 3"  rotation="0 0 0" animation="property: rotation; to: 360 360 360; loop: true; easing: linear; dur: 10000"></a-box>
+<a-box static-body position="8 3 -15" src="images/m (136).jpg" material="transparent: true; opacity: 0.7;" scale="3 3 3"  rotation="0 0 0" animation="property: rotation; to: 360 360 360; loop: true; easing: linear; dur: 10000"></a-box>
 
 <a-box position="6 1 6" src="images/fire.jpg" material="transparent: true; opacity: 0.7;" scale="2 2 2"  rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000"></a-box>
 
@@ -579,8 +583,6 @@
 
 <a-box position="-12 1 22" src="images/fire.jpg" material="transparent: true; opacity: 0.7;" scale="2 2 2"  rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000"></a-box>
 
-
-<a-curvedimage position="0 20 -30" src="images/z (6).jpg" material="transparent: true; opacity: 0.7;" radius="180" height="50" theta-length="35"></a-curvedimage>
 
 
 <a-entity rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000">
@@ -611,17 +613,19 @@
 <a-sphere color="cyan" src="images/sand.jpg" material="transparent: true; opacity: 0.9;" scale="1 1 1" position="-3 14 3" rotation="0 0 0" animation="property: rotation; to: 0 360 360; loop: true; easing: linear; dur: 10000"></a-sphere>
 </a-entity>
 
-<a-entity position="0 5 -100" animation="property: position; to: 0 5 -10; loop: true; dir: alternate; easing: linear; dur: 10000">
+<a-box position="0 10 -30" src="images/queen.png" material="transparent: true; opacity: 0.7;" scale="10 10 10"  rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000"></a-box>
+
+<a-entity position="0 5 90" animation="property: position; to: 0 5 10; loop: true; dir: alternate; easing: linear; dur: 10000">
 <a-image src="images/mazda.png" material="transparent: true; position="0 0 0" scale="10 10 10" rotation="0 0 0"> 
 </a-image>
 </a-entity>
 
-<a-entity position="0 15 -100" animation="property: position; to: 0 15 -10; loop: true; dir: alternate; easing: linear; dur: 10000">
+<a-entity position="0 15 90" animation="property: position; to: 0 15 10; loop: true; dir: alternate; easing: linear; dur: 10000">
 <a-image src="images/zoroastro.png" material="transparent: true; position="0 0 0" scale="5 5 5" rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000"> 
 </a-image>
 </a-entity>
 
-<a-box position="0 10 30" src="images/queen.png" material="transparent: true; opacity: 0.7;" scale="10 10 10"  rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000"></a-box>
+
 
 
 <!-- Floor -->
