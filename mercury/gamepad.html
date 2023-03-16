@@ -137,14 +137,14 @@
 <div class="text"><span style="color: white;">Zoroaster Superstar:</span> <span><a href="../bowie/gamepad.html">David Bowie</a></span> <span style="color: white;">(Ziggy Stardust) </span><span><a href="../mercury/gamepad.html">Freddie Mercury</a></span> <span style="color: white;">(Queen) </span><span><a href="../casanova/gamepad.html">Casanova</a></span> <span style="color: white;">(Fellini)</span></div>
 </div>
 
-<a-scene rain="width: 100; count: 10000;" loading-screen="dotsColor: cyan; backgroundColor: black" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true" antialias="true">
+<a-scene preload="true;" rain="width: 100; count: 10000;" loading-screen="dotsColor: cyan; backgroundColor: black" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true" antialias="true">
 
 
 <!-- World -->
 
 <a-sky src="images/sky.jpg" ></a-sky>
 
-<a-cylinder material="src:images/cylinder.jpg; side: double;" open-ended="true" scale="80 50 80" opacity="0.3;" position="0 14 0" rotation="0 0 0" animation="property: rotation; to: 0 -360 0; loop: true; easing: linear; dur: 20000"></a-cylinder>
+<a-cylinder material="src:images/cylinder.jpg; side: double;" open-ended="true" scale="80 50 80" opacity="0.6;" position="0 14 0" rotation="0 0 0" animation="property: rotation; to: 0 -360 0; loop: true; easing: linear; dur: 20000"></a-cylinder>
 
 <a-cylinder material="src:images/money.jpg; side: double;" open-ended="true" scale="80 50 80" opacity="0.3;" position="0 12 0" rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 20000"></a-cylinder>
 
