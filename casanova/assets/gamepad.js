@@ -94,7 +94,7 @@
 
 	    // Enable/disable features
 	    enabled:           { default: true },
-	    movementEnabled:   { default: true },
+	    movementEnabled:   { default: false },
 	    lookEnabled:       { default: true },
 	    flyEnabled:        { default: false },
 	    invertAxisY:       { default: false },

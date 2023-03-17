@@ -1,286 +1,337 @@
 <html>
   <head>
-    <title>Achtung Banditen?!</title><meta charset="utf-8" />
+    <title>Casanova (Fellini + Rota) - Clavis Artis in the Cloud - ARTOLDO</title><meta charset="utf-8" />
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <script src="assets/engine6.js"></script>
-    <script src="assets/gamepad.js"></script>
-    <script src="assets/environment.js"></script>
+    <meta name="author" content="ARTOLDO - Sara Ferro & Chris Weil">
+    <meta property="og:image" content="./images/clavisartis.png" />
+    <link rel="icon" type="image/png" href="./images/clavisartis.png" />
+    <script src="assets/engine.js"></script>
+    <script src="assets/extras.js"></script>
+    <script src="assets/sound.js"></script>
+    <script src="assets/audio.js"></script>
+    <script src="assets/random.js"></script>
     <script src="assets/rain.js"></script>
-    <script src="assets/gif.js"></script>
-    <script src="assets/animation.js"></script>
+    <script src="assets/loader1.js"></script>
+    <script src="assets/loader2.js"></script>
 
-</head>
     <style>
-      .overlay {
-        z-index: 100;
+      .a-dialog-allow-button {
+       background-color: white;
+	}
+
+      .a-dialog-deny-button {
+       background-color: white;
+        }
+
+      .a-dialog-ok-button {
+       background-color: white;
+        }
+
+      .logo {
+        z-index: 101;
         position: absolute;
         top: 20px;
         left: 20px;
-        max-width: calc(100% - 40px);
-        box-sizing: border-box;
         padding: 0.5em;
-        color: #FFF;
+        background: transparent;
+        height:100px;
+      }
+
+      #center {
+	bottom: 0px;
+        position: absolute;
+        width:100%;
+        text-align: center;
+        z-index: 99;
+ 
+        }
+  
+      .overlay {
+        z-index: 100;
+        width:100%;
+        position: absolute;
+        top: 20px;
+        background: transparent;
+        }
+
+      .text {
+        margin: auto;
+  	width: 50%;
+        padding: 0.5em;
+        font-family: arial;
+        font-size: large;
+        text-align: center;
         background: rgba(0,0,0,0.5);
         border-radius: 3px;
-        font-family: monospace;
-        font-size: 1.2em;
+        }
+
+      	a:link {
+  	color: cyan;
+  	background-color: transparent;
+  	text-decoration: underline;
+	}
+
+	a:visited {
+  	color: cyan;
+  	background-color: transparent;
+  	text-decoration: none;
+	}
+
+	a:hover {
+  	color: yellow;
+  	background-color: transparent;
+  	text-decoration: overline;
+	}
+
+	a:active {
+  	color: cyan;
+  	background-color: transparent;
+  	text-decoration: none;
+	}
+
+
+       @media only screen and (max-width: 760px) {
+
+        .text {
+		font-size:small;
+        }
+
+        .logo {
+		height:70px; left:5px; top: 30px;
+        }
+
+        .gondola {
+		width:30%
+        }
+        
+        
       }
+
+
+      @media only screen and (max-width: 1200px) {
+
+        .text {
+		font-size:normal;
+        }
+
+        .gondola {
+		width:30%
+        }
+            
+      }
+
+      .no-js #loader { display: none;  }
+      .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+      .se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(./images/spinner.svg) center no-repeat #000;
+     }
+  
     </style>
   </head>
-  <body>
-    <div class="overlay">
-      Connect the Xbox 360 controller and press (A) to start.
-    </div>
 
-    <a-scene rain="width: 100; count: 10000;">
-      <!--
-        Camera + Gamepad controls
-        Button 0 is "A" on an Xbox controller.
-      -->
-      <a-entity camera
-                position="0 1 0"
-                look-controls
-                gamepad-controls
-                sound="src: url(assets/sound.mp3); loop:true;
-                       on: gamepadbuttondown:0">
-      </a-entity>
+<script>
+// Wait for window load
+	$(window).load(function() {
+		// Animate loader off screen
+		$(".se-pre-con").fadeOut("slow");;
+	});
+</script>
+
+<body bg-color="black">
+
+<div class="se-pre-con"></div>
+
+<image src="images/clavisartis.png" class="logo"/>
+
+<div id="center">
+<image src="images/gondola.png" class="gondola"/>
+</div>
+
+<div class="overlay">
+<div class="text"><span style="color: white;">Zoroaster Superstar:</span> <span><a href="../bowie/">David Bowie</a></span> <span style="color: white;">(Ziggy Stardust) </span><span><a href="../mercury/">Freddie Mercury</a></span> <span style="color: white;">(Queen) </span><span><a href="../casanova/">Casanova</a></span> <span style="color: white;">(Fellini + Rota)</span></div>
+</div>
+
+<a-scene loading-screen="dotsColor: cyan; backgroundColor: black" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true" antialias="true" cursor="rayOrigin: mouse">
 
 <!-- World -->
 
-<a-entity id="environment" environment="preset: goldmine; dressingAmount: 500; dressingColor: #2d2d2d; ground: flat; horizonColor: red;"></a-entity>
+<a-sky src="images/venice.jpg" ></a-sky>
 
-<!-- Title -->
+<a-ocean color="marine" width="5000" depth="5000" opacity="0.5" density="50" speed="10" position="0 3 0"></a-ocean>
 
-<a-entity  text="value: \n Achtung Banditen?! Installation by ARTOLDO (Sara Ferro &amp; Chris Weil) based on the Atlas of Nazi and Fascist Massacres in Italy; shader: msdf; font: assets/fonts/germaniaone/GermaniaOne-Regular.json; wrapCount: 40; align: center" scale="2 2 2" position="0 0.1 -1.5" rotation="-90 0 0"></a-entity>
+<!-- Sound -->
 
-<!-- Objects -->
+    <audio id="music" src="assets/music.mp3"     crossorigin="anonymous"></audio>
+		
+	
+<!-- Camera -->
 
-<a-entity id="box1" scale="1.5 1.5 1.5" rotation="0 0 0" position="-8.33499 8.839 0.44742" geometry="" material="src: ./images/00.gif" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000"> 
+<a-entity id="rig" position="0 10 10" look-controls="pointerLockEnabled:true;" animation="property: position; to: 0 2 10;  easing: linear; dur: 5000">
+	<a-entity id="camera" camera position="0 2 0" cursor-visible="true">
+		
+		
+	</a-entity>
 </a-entity>
 
-<a-entity id="box2" scale="1.5 1.5 1.5" rotation="0 0 0" position="-13.13495 9.00932 -5.5234" geometry="" material="src: ./images/00.gif" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000"> 
+
+<!-- Cubes -->
+
+
+<a-entity id="box1" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (1).jpg); opacity: 0.7;" animation="property: rotation; to: -360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
+
+<a-entity id="box2" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (2).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
 </a-entity>     
 
-<a-entity id="box3" scale="1.5 1.5 1.5" rotation="0 0 0" position="0.8339 8.517 -11.35503"  geometry="" material="src: ./images/00.gif" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000"> 
+<a-entity id="box3" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (3).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 -360; loop: true; easing: linear; dur: 10000"> 
 </a-entity>
 
-<a-entity id="box4" scale="1.5 1.5 1.5" rotation="0 0 0" position="11.10 9.027 -14.98" geometry="" material="src: ./images/00.gif" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000"> 
+<a-entity id="box4" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (4).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
 </a-entity>
 
-<a-entity id="box5" scale="1.5 1.5 1.5" rotation="0 0 0" position="20.38 7.875 -7.423" geometry="" material="src: ./images/00.gif" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000"> 
+<a-entity id="box5" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (5).jpg); opacity: 0.7;" animation="property: rotation; to: -360 -360 360; loop: true; easing: linear; dur: 10000"> 
 </a-entity>
 
-<a-entity id="box6" scale="1.5 1.5 1.5" rotation="0 0 0" position="-14.40479 8.641 13.09522" geometry="" material="src: ./images/00.gif" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000"> 
+<a-entity id="box6" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (6).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
 </a-entity>
 
-<a-entity id="box7" scale="1.3 1.3 1.3" rotation="0 0 0" position="-1.83444 6.909 -4.128" geometry="" material="src: ./images/00.gif" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000"> 
+<a-entity id="box7" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (7).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 -360; loop: true; easing: linear; dur: 10000"> 
 </a-entity>
 
-<a-entity id="box8" scale="1.5 1.5 1.5" rotation="0 0 0" position="2.275 8.976 5.160" geometry="" material="src: ./images/00.gif" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000"> 
+<a-entity id="box8" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (8).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
 </a-entity>
 
-<a-entity id="box9" scale="1.5 1.5 1.5" rotation="0 0 0" position="4.774 8.447 15.187" geometry="" material="src: ./images/00.gif" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000"> 
+<a-entity id="box9" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (9).jpg); opacity: 0.7;" animation="property: rotation; to: -360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>     
+
+<a-entity id="box10" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"  geometry="" material="src:url(images/c (10).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
 </a-entity>
 
+<a-entity id="box11" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (11).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 -360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<!-- Numbers -->
+<a-entity id="box12" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (12).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Agrigento" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Agrigento \n 12 July 1943 \n [6 victims in 1 episode]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="5.14899 3.20168 14.47101" rotation="0 180 -7"></a-entity>
+<a-entity id="box13" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"  geometry="" material="src:url(images/c (13).jpg); opacity: 0.7;" animation="property: rotation; to: -360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Alessandria" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Alessandria \n 9 September 1943 - 26 April 1945 \n [336 victims in 93 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="14.312 1.92089 5.23448" rotation="0 360 -10"></a-entity>
+<a-entity id="box14" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (14).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Ancona" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Ancona \n 6 February 1944 - 8 August 1944 \n [163 victims in 59 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="16.52179 2.27957 2.88373" rotation="0 -180 8"></a-entity>
+<a-entity id="box15" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"  geometry="" material="src:url(images/c (15).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 -360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Aosta" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Aosta \n 28 April 1944 - 31 March 1945 \n [142 victims in 31 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-20.25293 1.90734 1.34513" rotation="0 90 6.999825383113269"></a-entity>
+<a-entity id="box16" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"  geometry="" material="src:url(images/c (16).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>     
 
-<a-entity id="Arezzo" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Arezzo \n 8 March 1944 - 18 December 1944 \n [1178 victims in 211 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 45; align: center" position="3.82049 1.65438 14.96592" rotation="0 -90 7"></a-entity>
+<a-entity id="box17" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (17).jpg); opacity: 0.7;" animation="property: rotation; to: -360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Ascoli Piceno" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Ascoli Piceno \n 28 November 1943 - 18 June 1944 \n [81 victims in 26 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="18.20 2.4145 12.080" rotation="0 -90 -10"></a-entity>
+<a-entity id="box18" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (18).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Asti" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Asti \n 7 January 1944 - 24 April 1945 \n [80 victims in 50 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-3.77649 1.84112 19.30398" rotation="0 180 7"></a-entity>
+<a-entity id="box19" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (19).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 -360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Avellino" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Avellino \n 10 September 1943 - 30 September 1943 \n [18 victims in 12 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="-15.45044 1.80634 -0.68756" rotation="0 90 -7"></a-entity>
+<a-entity id="box20" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (20).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Bari" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Bari \n 9 September 1943 - 19 October 1943 \n [20 victims in 10 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="-17.75649 1.81677 9.79427" rotation="0 90 -10"></a-entity>
+<a-entity id="box21" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (21).jpg); opacity: 0.7;" animation="property: rotation; to: -360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Barletta-Andria-Trani" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Barletta-Andria-Trani \n 10 September 1943 - 16 September 1943 \n [58 victims in 5 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="9.86011 2.07205 21.60331" rotation="0 -180 8"></a-entity>
+<a-entity id="box22" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (22).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Belluno" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Belluno \n 31 October 1943 - 4 May 1945 \n [373 victims in 151 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-9.12172 1.83561 1.17024" rotation="0 -66.16402026611722 6.999825383113269"></a-entity>
+<a-entity id="box23" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (23).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 -360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>     
 
-<a-entity id="Benevento" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Benevento \n 21 September 1943 - 27 October 1943 \n [30 victims in 17 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="7.13593 2.38448 -1.76007" rotation="0 320 7"></a-entity>
+<a-entity id="box24" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"    geometry="" material="src:url(images/c (24).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Bergamo" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Bergamo \n 7 December 1943 - 28 April 1945 \n [201 victims in 44 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-13.13809 2 -4.477" rotation="0 0 -10"></a-entity>
+<a-entity id="box25" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (25).jpg); opacity: 0.7;" animation="property: rotation; to: -360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Biella" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Biella \n 12 December 1943 - 1 May 1945 \n [186 victims in 43 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-9.65641 1.62655 -10.21636" rotation="0 0 7"></a-entity>
+<a-entity id="box26" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (26).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Bologna" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Bologna \n 10 September 1943 - 21 April 1945 \n [1977 victims in 297 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 45; align: center" position="-12.28514 1.42109 -5.26301" rotation="0 90 10"></a-entity>
+<a-entity id="box27" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (27).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 -360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Bolzano" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Bolzano \n 9 September 1943 - 4 May 1945 \n [104 victims in 12 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-13.64715 2.88324 12.49034" rotation="0 90 7"></a-entity>
+<a-entity id="box28" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"  geometry="" material="src:url(images/c (28).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Brescia" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Brescia \n 13 November 1943 - 27 April 1945 \n [115 victims in 48 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="18.26104 1.78663 -0.46474" rotation="0 -90 -7"></a-entity>
+<a-entity id="box29" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (29).jpg); opacity: 0.7;" animation="property: rotation; to: -360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Campobasso" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Campobasso \n 30 September 1943 - 21 October 1943 \n [11 victims in 8 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="6.76291 1.44867 -2.05938" rotation="0 -90 -10"></a-entity>
+<a-entity id="box30" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (30).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>     
 
-<a-entity id="Caserta" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Caserta \n 9 September 1943 - 22 December 1943 \n [755 victims in 278 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-8.68833 2.32104 -0.23196" rotation="0 -180 8"></a-entity>
+<a-entity id="box31" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (31).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 -360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Catania" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Catania \n 17 July 1943 - 12 August 1943 \n [38 victims in 9 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="13.55021 0.99679 4.76142" rotation="0 -66.16402026611722 6.999825383113269"></a-entity>
+<a-entity id="box32" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (32).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Chieti" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Chieti \n 14 September 1943 -  5 June 1944 \n [389 victims in 162 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="0.03187 0.9 -11.14994" rotation="0 -90 7"></a-entity>
+<a-entity id="box33" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"  geometry="" material="src:url(images/c (33).jpg); opacity: 0.7;" animation="property: rotation; to: -360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Como" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Como \n 23 December 1943 - 24 April 1945 \n [32 victims in 13 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="6.08861 2.70299 21.61468" rotation="0 180 -10"></a-entity>
+<a-entity id="box34" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (34).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 -360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Cosenza" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Cosenza \n 9 September 1943 \n [1 victim in 1 episode]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-19.32039 2.34677 -9.91637" rotation="0 90 7"></a-entity>
+<a-entity id="box35" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (35).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Cremona" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Cremona \n 9 September 1943 - 28 April 1945 \n [110 victims in 41 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-17.48543 2.07219 -5.67869" rotation="0 90 -7"></a-entity>
+<a-entity id="box36" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (36).jpg); opacity: 0.7;" animation="property: rotation; to: -360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Cuneo" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Cuneo \n 11 September 1943 - 29 April 1945 \n [864 victims in 165 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="10.94827 2.68193 -14.11768" rotation="0 0 -10"></a-entity>
+<a-entity id="box37" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (37).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>     
 
-<a-entity id="Fermo" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Fermo \n 2 October 1943 - 20 June 1944 \n [31 victims in 18 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="16.50772 1.7347 20.14106" rotation="0 180 8"></a-entity>
+<a-entity id="box38" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"    geometry="" material="src:url(images/c (38).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 -360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Ferrara" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Ferrara \n 15 November 1943 - 22 April 1945 \n [77 victims in 25 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="17.72445 2.54395 -14.28829" rotation="0 -66.16402026611722 6.999825383113269"></a-entity>
+<a-entity id="box39" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (39).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Firenze" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Firenze \n 2 December 1943 - 6 September 1944 \n [591 victims in 130 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center;" position="-12.25315 2.68193 -5.17315" rotation="0 90 -10"></a-entity>
+<a-entity id="box40" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (40).jpg); opacity: 0.7;" animation="property: rotation; to: -360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Fiume" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Fiume \n 2 October 1943 - 10 March 1945 \n [398 victims in 5 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-14.12873 1.57539 12.11311" rotation="0 130 7"></a-entity>
+<a-entity id="box41" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (41).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 -360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Foggia" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Foggia \n 9 September 1943 - 20 October 1943 \n [51 victims in 13 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="5.69925 1.85633 21.35456" rotation="0 180 -10"></a-entity>
+<a-entity id="box42" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (42).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Forli-Cesena" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Forli-Cesena \n 25 September 1943 - 23 November 1944 \n [396 victims in 107 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="1.78252 1.32243 -11.17798" rotation="0 90 7"></a-entity>
+<a-entity id="box43" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (43).jpg); opacity: 0.7;" animation="property: rotation; to: -360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>
 
-<a-entity id="Frosinone" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Frosinone \n 24 February 1944 - 4 June 1944 \n [154 victims in 43 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-9.08058 3.52602 -10.98047" rotation="0 90 -7"></a-entity>
+<a-entity id="box44" randomize="position:20 3 20..-20 3 -20" scale="1 1 1" rotation="0 0 0"   geometry="" material="src:url(images/c (44).jpg); opacity: 0.7;" animation="property: rotation; to: 360 -360 360; loop: true; easing: linear; dur: 10000"> 
+</a-entity>     
 
-<a-entity id="Genova" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Genova \n 14 January 1944 - 24 April 1945 \n [224 victims in 28 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-7.39552 1.49078 0.56522" rotation="0 90 -7"></a-entity>
 
-<a-entity id="Gorizia" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Gorizia \n 15 September 1943 - 8 April 1945 \n [33 victims in 13 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="5.59146 2.03734 15.22663" rotation="0 90 -10"></a-entity>
+<!-- Object -->
 
-<a-entity id="Gorizia-Slovenia" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Gorizia-Slovenia \n 22 December 1943 - 4 April 1945 \n [83 victims in 7 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="7.63124 2.36189 17.22156" rotation="0 180 8"></a-entity>
+<a-box position="0 8 0" src="images/clavisartis.png" material="transparent: true; opacity: 0.7;" scale="2 2 2"  rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000"></a-box>
 
-<a-entity id="Grosseto" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Grosseto \n 25 October 1943 - 28 June 1944 \n [134 victims in 75 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="-15.51615 2.88054 -0.66714" rotation="0 66 6.999825383113269"></a-entity>
 
-<a-entity id="Imperia" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Imperia \n 1 July 1944 - 8 April 1945 \n [323 victims in 51 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="-14.0484 2.25797 12.1619" rotation="0 180 7"></a-entity>
+<!-- Floor -->
 
-<a-entity id="Isernia" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Isernia \n 3 October 1943 - 18 December 1943 \n [38 victims in 16 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="13.61 2.362 3.890" rotation="0 180 0"></a-entity>
+<a-plane static-body id="floor" material="src:url(images/moss.jpg); repeat:100 100;" width="1000" height="1000" rotation="-90 0 0" position="0 2 0"></a-plane>
+<a-box color="black" scale="200 20 200" position="0 -12 0" audio="src: #music; loop: true;"></a-box>
 
-<a-entity id="L'Aquila" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of L'Aquila \n 12 September 1943 - 12 June 1944 \n [371 victims in 137 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="7.12555 1.50 7.05201" rotation="0 0 7"></a-entity>
 
-<a-entity id="La Spezia" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of La Spezia \n 10 September 1943 - 20 April 1945 \n [159 victims in 50 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="7.81127 2.92803 6.19146" rotation="0 90 -7"></a-entity>
 
-<a-entity id="Latina" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Latina \n 9 September 1943 - 26 May 1944 \n [42 victims in 25 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="-9.38046 2.10699 22.28764" rotation="0 180 -10"></a-entity>
-
-<a-entity id="Lecco" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Lecco \n 16 October 1943 - 8 January 1945 \n [38 victims in 7 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-14.62548 2.20814 -14.58515" rotation="0 90 8"></a-entity>
-
-<a-entity id="Livorno" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Livorno \n 17 September 1943 - 22 July 1944 \n [57 victims in 17 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="20.41555 2.54395 -14.77368" rotation="0 -66.16402026611722 6.999825383113269"></a-entity>
-
-<a-entity id="Lodi" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Lodi \n 7 January 1944 - 27 April 1945 \n [73 victims in 25 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-10.96841 2.1476 -14.28051" rotation="0 29.999999999999996 7"></a-entity>
-
-<a-entity id="Lucca" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Lucca \n 10 September 1943 - 25 March 1945 \n [730 victims in 74 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="0.83372 1.8601 -10.47101" rotation="0 0 7"></a-entity>
-
-<a-entity id="Macerata" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Macerata \n 1 October 1943 - 17 July 1944 \n [282 victims in 97 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-8.83271 2.6227 1.47" rotation="0 0 -10"></a-entity>
-
-<a-entity id="Mantova" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Mantova \n 9 September 1943 - 29 April 1945 \n [51 victims in 18 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="16.00023 1.40472 2.84361" rotation="0 -160 7"></a-entity>
-
-<a-entity id="Massa-Carrara" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Massa-Carrara \n 8 March 1944 - 23 April 1945 \n [931 victims in 72 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="2.158 1.604 6.085" rotation="0 330 -7"></a-entity>
-
-<a-entity id="Matera" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Matera \n 21 September 1943 \n [26 victims in 1 episode]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-13.60703 2.22416 17.21753" rotation="0 150 -10"></a-entity>
-
-<a-entity id="Messina" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Messina \n 1 August 1943 - 15 August 1943 \n [14 victims in 6 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="-21.02593 2.95244 -0.4903" rotation="0 90 8"></a-entity>
-
-<a-entity id="Milano" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Milano \n 12 September 1943 - 26 April 1945 \n [249 victims in 123 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="-1.75448 1.355 -3.44983" rotation="0 0 8"></a-entity>
-
-<a-entity id="Modena" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Modena \n 9 September 1943 - 23 April 1945 \n [799 victims in 191 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="1.773 2.589 5.802" rotation="0 -66.16402026611722 6.999825383113269"></a-entity>
-
-<a-entity id="Monza e della Brianza" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Monza e della Brianza \n 29 September 1943 - 26 April 1945 \n [41 victims in 22 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-19.50498 2.88324 14.98065" rotation="0 90 7"></a-entity>
-
-<a-entity id="Napoli" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Napoli \n 9 September 1943 - 9 October 1943 \n [570 victims in 172 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="2.542 1.593 4.259" rotation="0 166.33652342001955 -9.999832398418258"></a-entity>
-
-<a-entity id="Novara" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Novara \n 15 September 1943 - 27 April 1945 \n [164 victims in 47 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-3.73929 2.70265 19.29665" rotation="0 180 -10"></a-entity>
-
-<a-entity id="Padova" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Padova \n 20 February 1944 - 29 April 1945 \n [513 victims in 129 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="19.76268 0.89224 -7.69829" rotation="0 -90 -7"></a-entity>
-
-<a-entity id="Parma" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Parma \n 1 January 1944 - 27 April 1945 \n [412 victims in 117 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="20.37868 1.55829 -6.50978" rotation="0 0 -10"></a-entity>
-
-<a-entity id="Pavia" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Pavia \n 9 September 1943 - 8 May 1945 \n [235 victims in 125 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-9.1067 2.55094 -10.314" rotation="0 90 8"></a-entity>
-
-<a-entity id="Perugia" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Perugia \n 31 October 1943 - 18 August 1944 \n [410 victims in 149 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="10.64404 1.37961 -13.85624" rotation="0 -66.16402026611722 6.999825383113269"></a-entity>
-
-<a-entity id="Pesaro e Urbino" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Pesaro e Urbino \n 23 September 1943 - 21 September 1944 \n [132 victims in 64 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="2.03723 1.48745 22.43026" rotation="0 180 7"></a-entity>
-
-<a-entity id="Pescara" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Pescara \n 15 September 1943 - 11 June 1944 \n [65 victims in 32 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-15.17127 1.27882 -13.94162" rotation="0 29.999999999999996 -10"></a-entity>
-
-<a-entity id="Piacenza" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Piacenza \n 28 October 1943 - 21 March 1945 \n [85 victims in 18 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="7.04876 1.6583 5.39641" rotation="0 -180 7"></a-entity>
-
-<a-entity id="Pisa" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Pisa: \n 25 March 1944 - 2 September 1944 \n [380 victims in 54 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="6.82693 3.85146 7.10893" rotation="0 0 -7"></a-entity>
-
-<a-entity id="Pistoia" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Pistoia \n 12 September 1943 - 9 October 1944 \n [235 victims in 77 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="-18.122 2.518 9.789" rotation="0 150 -10"></a-entity>
-
-<a-entity id="Pola" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Pola \n 11 September 1943 - 2 October 1944 \n [592 victims in 20 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="-1.60254 1.49766 -4.84465" rotation="0 180 8"></a-entity>
-
-<a-entity id="Pordenone" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Pordenone \n 14 April 1944 - 1 May 1945 \n [156 victims in 69 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="16.08895 0.87645 20.23553" rotation="0 -130 6.999825383113269"></a-entity>
-
-<a-entity id="Potenza" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Potenza \n 9 September 1943 - 24 September 1943 \n [26 victims in 7 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="-20.213 2.5792 2.45346" rotation="0 90 7"></a-entity>
-
-<a-entity id="Prato" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Prato \n 1 June 1944 - 26 September 1944 \n [47 victims in 9 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="-14.43274 1.72685 13.93145" rotation="0 0 -10"></a-entity>
-
-<a-entity id="Ravenna" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Ravenna \n 24 October 1943 - 10 April 1945 \n [472 victims in 119 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="17.78423 1.20527 -14.65595" rotation="0 -50 7"></a-entity>
-
-<a-entity id="Reggio di Calabria" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Reggio di Calabria \n 12 August 1943 - 6 September 1943 \n [19 victims in 3 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="7.87628 1.44493 -1.95443" rotation="0 90 -7"></a-entity>
-
-<a-entity id="Reggio Emilia" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Reggio Emilia \n 28 December 1943 - 23 April 1945 \n [439 victims in 69 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="16.46954 2.191 4.13068" rotation="0 0 20"></a-entity>
-
-<a-entity id="Rieti" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Rieti \n 27 September 1943 - 14 June 1944 \n [213 victims in 47 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="18.19196 3.31973 13.06564" rotation="0 -90 8"></a-entity>
-
-<a-entity id="Rimini" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Rimini \n 10 October 1943 - 26 September 1944 \n [121 victims in 52 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="7.01485 0.77828 -2.7077" rotation="0 -180 6.999825383113269"></a-entity>
-
-<a-entity id="Roma" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Roma \n 8 September 1943 - 14 June 1944 \n [721 victims in 105 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="-2.48858 2.64169 -4.72256" rotation="0 -130 7"></a-entity>
-
-<a-entity id="Rovigo" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Rovigo \n 26 May 1944 - 26 April 1945 \n [101 victims in 28 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="9.85021 3.22408 21.44502" rotation="0 -180 -10"></a-entity>
-
-<a-entity id="Salerno" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Salerno \n 8 September 1943 - 2 October 1943 \n [36 victims in 22 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="1.74548 2.57005 22.50078" rotation="0 -180 7"></a-entity>
-
-<a-entity id="Savona" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Savona \n 11 September 1943 - 24 April 1945 \n [200 victims in 53 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="18.25225 2.79662 -0.44864" rotation="0 -90 8"></a-entity>
-
-<a-entity id="Siena" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Siena \n 15 January 1944 - 17 July 1944 \n [186 victims in 102 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="0.08908 2.67862 -10.99567" rotation="0 -66.16402026611722 6.999825383113269"></a-entity>
-
-<a-entity id="Siracusa" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Siracusa \n July 1943 \n [2 victims in 1 episode]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-18.88269 1.40725 -7.90634" rotation="0 90 7"></a-entity>
-
-<a-entity id="Sondrio" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Sondrio \n 19 March 1944 - 27 April 1945 \n [69 victims in 36 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="-9.02316 0.830 -10.99113" rotation="0 119.99999999999999 0" rotation="0 0 -10"></a-entity>
-
-<a-entity id="Taranto" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Taranto \n 19 September 1943 \n [1 victim in 1 episode]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-12.83421 0.8492 20.09153" rotation="0 180 7"></a-entity>
-
-<a-entity id="Teramo" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Teramo \n 25 September 1943 - 17 June 1944 \n [78 victims in 28 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="7.3674 2.8624 18.41253" rotation="0 90 8"></a-entity>
-
-<a-entity id="Terni" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Terni \n 12 September 1943 - 18 June 1944 \n [67 victims in 32 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="17.98 1.284 12.951" rotation="0 -90 6.999825383113269"></a-entity>
-
-<a-entity id="Torino" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Torino \n 10 September 1943 - 1 May 1945 \n [945 victims in 163 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="19.75915 2.54395 -7.08455" rotation="0 -66.16402026611722 6.999825383113269"></a-entity>
-
-<a-entity id="Trento" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Trento \n 9 September 1943 - 6 May 1945 \n [157 victims in 56 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-17.53526 2.88324 -5.49292" rotation="0 90 7"></a-entity>
-
-<a-entity id="Treviso" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Treviso \n 12 April 1944 - 1 May 1945 \n [254 victims in 86 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="13.97933 2.88443 5.23915" rotation="0 0 -10"></a-entity>
-
-<a-entity id="Trieste" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Trieste \n 7 March 1944 - 28 April 1945 \n [730 victims in 74 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="-2.00147 2.16126 -3.36462"></a-entity>
-
-<a-entity id="Udine" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Udine \n 2 October 1943 - 5 May 1945 \n [726 victims in 154 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="-8.39837 3.22924 -0.23635" rotation="0 180 8"></a-entity>
-
-<a-entity id="Udine-Slovenia" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Udine-Slovenia \n 11 October 1943 \n [16 victims in 1 episode]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="14.55 1.222 -5.426" rotation="0 -66.16402026611722 6.999825383113269"></a-entity>
-
-<a-entity id="Varese" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Varese \n 9 January 1944 - 19 March 1945 \n [22 victims in 10 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="17.11799 1.13642 17.06481" rotation="0 220 7"></a-entity>
-
-<a-entity id="Venezia" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Venezia \n 25 February 1944 - 28 April 1945 \n [120 victims in 48 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="16.4108 3.22785 4.12167" rotation="0 0 -10"></a-entity>
-
-<a-entity id="Verbano-Cusio-Ossola" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Verbano-Cusio-Ossola \n 15 September 1943 - 15 April 1945 \n [275 victims in 52 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="12.00198 1.54027 -14.97937" rotation="0 90 7"></a-entity>
-
-<a-entity id="Vercelli" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Vercelli \n 21 December 1943 - 29 April 1945 \n [210 victims in 35 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json;  wrapCount: 40; align: center" position="5.85574 4.07219 14.78536" rotation="0 90 8"></a-entity>
-
-<a-entity id="Verona" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Verona \n 9 September 1943 - 29 April 1945 \n [205 victims in 75 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="20.23973 1.47212 6.40497" rotation="0 -66.16402026611722 6.999825383113269"></a-entity>
-
-<a-entity id="Vicenza" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Vicenza \n 10 September 1943 - 30 April 1945 \n [751 victims in 186 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="2.367 2.2335 4.294" rotation="0 180 -3.0000000000000004"></a-entity>
-
-<a-entity id="Viterbo" geometry="primitive: plane; height: 0.5; width: 3" material="color: black" text="value: \n Province of Viterbo \n 14 October 1943 - 17 June 1944 \n [96 victims in 20 episodes]; shader: msdf; font: assets/fonts/robotomono/RobotoMono-Regular.json; wrapCount: 40; align: center" position="6.1166 2.42955 5.99386" rotation="0 -90 -10"></a-entity>
 
 </a-scene>
+             
 
-   
-    </div>
   </body>
 </html>
