@@ -7,6 +7,7 @@
     <meta property="og:image" content="./images/clavisartis.png" />
     <link rel="icon" type="image/png" href="./images/clavisartis.png" />
     <script src="assets/engine6.js"></script>
+    <script src="assets/animation.js"></script>
     <script src="assets/extras.js"></script>
     <script src="assets/sound.js"></script>
     <script src="assets/audio.js"></script>
@@ -162,7 +163,7 @@
 
 <!-- World -->
 
-<a-sky src="images/venice.jpg" ></a-sky>
+<a-sky src="images/venice.jpeg" ></a-sky>
 
 <a-ocean color="marine" width="5000" depth="5000" opacity="0.5" density="50" speed="10" position="0 3 0"></a-ocean>
 
@@ -319,15 +320,11 @@
 
 <!-- Object -->
 
-<a-box position="0 8 0" src="images/clavisartis.png" material="transparent: true; opacity: 0.7;" scale="2 2 2"  rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000"></a-box>
-
 
 <!-- Floor -->
 
 <a-plane static-body id="floor" material="src:url(images/moss.jpg); repeat:100 100;" width="1000" height="1000" rotation="-90 0 0" position="0 2 0"></a-plane>
 <a-box color="black" scale="200 20 200" position="0 -12 0" audio="src: #music; loop: true;"></a-box>
-
-
 
 
 </a-scene>
