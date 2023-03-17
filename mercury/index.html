@@ -6,9 +6,8 @@
     <meta name="author" content="ARTOLDO - Sara Ferro & Chris Weil">
     <meta property="og:image" content="./images/clavisartis.png" />
     <link rel="icon" type="image/png" href="./images/clavisartis.png" />
-    <script src="assets/engine6.js"></script>
-    <script src="assets/gamepad.js"></script>
-    <script src="assets/animation.js"></script>
+    <script src="assets/engine.js"></script>
+    <script src="assets/extras.js"></script>
     <script src="assets/sound.js"></script>
     <script src="assets/audio.js"></script>
     <script src="assets/random.js"></script>
@@ -159,7 +158,7 @@
 <div class="text"><span style="color: white;">Zoroaster Superstar:</span> <span><a href="../bowie/gamepad.html">David Bowie</a></span> <span style="color: white;">(Ziggy Stardust) </span><span><a href="../mercury/gamepad.html">Freddie Mercury</a></span> <span style="color: white;">(Queen) </span><span><a href="../casanova/gamepad.html">Casanova</a></span> <span style="color: white;">(Fellini)</span></div>
 </div>
 
-<a-scene rain="width: 100; count: 10000;" loading-screen="dotsColor: cyan; backgroundColor: black" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true" antialias="true">
+<a-scene rain="width: 100; count: 10000;" loading-screen="dotsColor: cyan; backgroundColor: black" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true" antialias="true" cursor="rayOrigin: mouse">
 
 
 <!-- World -->
@@ -178,7 +177,7 @@
 	
 <!-- Camera -->
 
-<a-entity id="rig" position="0 20 10" animation="property: position; to: 0 10 10; easing: linear; dur: 10000" gamepad-controls>
+<a-entity id="rig" position="0 20 10" look-controls="pointerLockEnabled:true;" animation="property: position; to: 0 10 10; easing: linear; dur: 10000">
 	<a-entity id="camera" camera position="0 1.6 0" cursor-visible="true">
 
 	</a-entity>
